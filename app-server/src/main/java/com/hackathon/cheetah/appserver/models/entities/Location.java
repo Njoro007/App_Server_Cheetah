@@ -9,11 +9,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -23,12 +23,13 @@ import javax.persistence.OneToOne;
     "name",
     "timestamp"
 })
-@Entity
+@Entity()
 public class Location {
 
     @Id
     @JsonProperty("id")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @JsonProperty("latitude")
     private String latitude;
     @JsonProperty("long")
@@ -37,10 +38,6 @@ public class Location {
     private String name;
     @JsonProperty("timestamp")
     private String timestamp;
-
-    @OneToOne
-    @JoinColumn(name = "WaterPan_id")
-    private WaterPan WaterPan;
 
     @JsonProperty("id")
     public String getId() {
@@ -91,4 +88,6 @@ public class Location {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
+
+
 }

@@ -21,12 +21,13 @@ import javax.persistence.*;
         "capacity_id",
         "price_id"
 })
-@Entity
+@Entity(name = "t_waterpan")
 public class WaterPan {
 
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @JsonProperty("id")
-    private String id;
+    private Integer id;
     @JsonProperty("name")
     private String name;
 
@@ -40,7 +41,6 @@ public class WaterPan {
     private String priceId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Location_id")
     private Location location;
 
     @JsonProperty("id")
@@ -104,5 +104,11 @@ public class WaterPan {
     }
 
 
+    public Location getLocation() {
+        return location;
+    }
 
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }

@@ -1,23 +1,18 @@
 
 package com.hackathon.cheetah.appserver.models.entities;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.hackathon.cheetah.appserver.models.entities.Location;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "id",
-    "location",
+    "locations",
     "manager",
     "content",
     "status",
@@ -28,11 +23,13 @@ public class PanProposol {
 
     @Id
     @JsonProperty("id")
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private String id;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "location_id")
-    @JsonProperty("location")
-    private Location location;
+
+    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id", referencedColumnName = "id")
+    @JsonProperty("locations")
+    private List<Location> locations;
     @JsonProperty("manager")
     private String manager;
     @JsonProperty("content")
@@ -54,14 +51,12 @@ public class PanProposol {
         this.id = id;
     }
 
-    @JsonProperty("location")
-    public Location getLocation() {
-        return location;
+    public List<Location> getLocations() {
+        return locations;
     }
 
-    @JsonProperty("location")
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
     }
 
     @JsonProperty("manager")

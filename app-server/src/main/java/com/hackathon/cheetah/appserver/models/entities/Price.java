@@ -1,21 +1,15 @@
 
-        package com.hackathon.cheetah.appserver.models.entities;
+package com.hackathon.cheetah.appserver.models.entities;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-        @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "id",
         "unit",
@@ -35,6 +29,9 @@ public class Price {
     private String priceUnit;
     @JsonProperty("type")
     private String type;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private com.hackathon.cheetah.appserver.models.entities.WaterPan WaterPan;
 
     @JsonProperty("id")
     public long getId() {
