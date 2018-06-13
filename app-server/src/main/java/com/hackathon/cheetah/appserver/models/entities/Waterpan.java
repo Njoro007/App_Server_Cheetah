@@ -1,4 +1,4 @@
-package com.hackathon.cheetah.appserver.configs;
+package com.hackathon.cheetah.appserver.models.entities;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import javax.persistence.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -19,14 +21,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "capacity_id",
         "price_id"
 })
-public class Waterpan {
+@Entity
+public class WaterPan {
 
+    @Id
     @JsonProperty("id")
     private String id;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("location_id")
-    private String locationId;
+
     @JsonProperty("user_id")
     private String userId;
     @JsonProperty("status")
@@ -35,8 +38,10 @@ public class Waterpan {
     private String capacityId;
     @JsonProperty("price_id")
     private String priceId;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Location_id")
+    private Location location;
 
     @JsonProperty("id")
     public String getId() {
@@ -56,16 +61,6 @@ public class Waterpan {
     @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
-    }
-
-    @JsonProperty("location_id")
-    public String getLocationId() {
-        return locationId;
-    }
-
-    @JsonProperty("location_id")
-    public void setLocationId(String locationId) {
-        this.locationId = locationId;
     }
 
     @JsonProperty("user_id")
@@ -108,14 +103,6 @@ public class Waterpan {
         this.priceId = priceId;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
 
 }

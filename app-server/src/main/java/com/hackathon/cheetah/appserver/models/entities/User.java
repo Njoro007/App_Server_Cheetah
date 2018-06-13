@@ -39,6 +39,7 @@ public class User {
     private String status;
     @JsonProperty("role")
     private String role;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "credentials_id")
     private Credentials credentials;
