@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -35,6 +37,10 @@ public class Location {
     private String name;
     @JsonProperty("timestamp")
     private String timestamp;
+
+    @OneToOne
+    @JoinColumn(name = "WaterPan_id")
+    private WaterPan WaterPan;
 
     @JsonProperty("id")
     public String getId() {
@@ -85,6 +91,4 @@ public class Location {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
-
-
 }
