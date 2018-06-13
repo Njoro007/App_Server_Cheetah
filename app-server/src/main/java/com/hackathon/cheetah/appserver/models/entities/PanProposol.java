@@ -12,10 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.hackathon.cheetah.appserver.models.entities.Location;
 import org.hibernate.annotations.Cascade;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -33,7 +30,7 @@ public class PanProposol {
     @JsonProperty("id")
     private String id;
     @OneToMany(cascade = CascadeType.ALL)
-
+    @JoinColumn(name = "location_id")
     @JsonProperty("location")
     private Location location;
     @JsonProperty("manager")
