@@ -24,7 +24,7 @@ public class PanProposol {
     @Id
     @JsonProperty("id")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private String id;
+    private long id;
 
     @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id", referencedColumnName = "id")
@@ -39,15 +39,11 @@ public class PanProposol {
     @JsonProperty("timestamp")
     private String timestamp;
 
-
-
-    @JsonProperty("id")
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    @JsonProperty("id")
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

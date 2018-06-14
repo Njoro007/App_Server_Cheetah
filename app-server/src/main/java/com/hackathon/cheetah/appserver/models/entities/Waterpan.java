@@ -27,11 +27,12 @@ public class WaterPan {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @JsonProperty("id")
-    private Integer id;
+    private long id;
     @JsonProperty("name")
     private String name;
 
     @JsonProperty("user_id")
+    @Column(name = "user_id" )
     private String userId;
     @JsonProperty("status")
     private String status;
@@ -43,13 +44,11 @@ public class WaterPan {
     @OneToOne(cascade = CascadeType.ALL)
     private Location location;
 
-    @JsonProperty("id")
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    @JsonProperty("id")
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 

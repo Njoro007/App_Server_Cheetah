@@ -27,7 +27,7 @@ public class PanRefill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("id")
-    private Long id;
+    private long id;
     @JsonProperty("pan_id")
     private String panId;
     @JsonProperty("capacity")
@@ -37,13 +37,11 @@ public class PanRefill {
     @JsonProperty("timestamp")
     private String timestamp;
 
-    @JsonProperty("id")
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    @JsonProperty("id")
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
