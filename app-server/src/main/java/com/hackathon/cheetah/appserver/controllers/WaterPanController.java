@@ -1,7 +1,11 @@
 package com.hackathon.cheetah.appserver.controllers;
 
 import com.hackathon.cheetah.appserver.models.entities.WaterPan;
+<<<<<<< HEAD
 import com.hackathon.cheetah.appserver.models.repositories.WaterPanRepository;
+=======
+import com.hackathon.cheetah.appserver.models.repositories.WaterpanRepository;
+>>>>>>> 9de11e5a9c7f71213e8ee6b62d3b8c896d90d779
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
