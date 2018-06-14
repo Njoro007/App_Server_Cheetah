@@ -29,7 +29,7 @@ public class Location {
     @Id
     @JsonProperty("id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private long id;
     @JsonProperty("latitude")
     private String latitude;
     @JsonProperty("long")
@@ -39,13 +39,11 @@ public class Location {
     @JsonProperty("timestamp")
     private String timestamp;
 
-    @JsonProperty("id")
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    @JsonProperty("id")
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
