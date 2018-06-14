@@ -1,8 +1,7 @@
 package com.hackathon.cheetah.appserver.controllers;
 
 import com.hackathon.cheetah.appserver.models.entities.WaterPan;
-import com.hackathon.cheetah.appserver.models.repositories.WaterpanRepository;
-import com.sun.xml.internal.bind.v2.model.core.ID;
+import com.hackathon.cheetah.appserver.models.repositories.WaterPanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,7 @@ import java.util.List;
 
 public class WaterPanController {
     @Autowired
-    WaterpanRepository waterpanRepository;
+    WaterPanRepository waterpanRepository;
 
     @RequestMapping(method = RequestMethod.GET, value = "")
     public ResponseEntity<List<WaterPan>> waterpans(){
@@ -32,5 +31,11 @@ public class WaterPanController {
 
         WaterPan waterpan = waterpanRepository.findById(id).get();
             return ResponseEntity.ok(waterpan);
+    }
+
+    @RequestMapping(value = "/{location}", method = RequestMethod.GET)
+    public ResponseEntity<WaterPan>  getWaterPanLocation(@PathVariable String loc){
+        WaterPan waterpan = waterpanRepository.getByLocation(loc);
+        return  ResponseEntity.ok(waterpan);
     }
 }
