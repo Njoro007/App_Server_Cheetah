@@ -2,7 +2,6 @@ package com.hackathon.cheetah.appserver.controllers;
 
 import com.hackathon.cheetah.appserver.models.entities.WaterPan;
 import com.hackathon.cheetah.appserver.models.repositories.WaterpanRepository;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
